@@ -19,7 +19,7 @@ setup(name='donkeyblue',
               'donkey=donkeycar.management.base:execute_from_command_line',
           ],
       },
-      install_requires=['evdev'],
+      install_requires=['evdev', 'pyyaml'],
 
 
       classifiers=[
