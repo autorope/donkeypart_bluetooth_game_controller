@@ -131,7 +131,7 @@ class BluetoothGameController(BluetoothDevice):
                 func(val)
 
             if self.verbose==True:
-                print(btn, val)
+                print("button: {}, value:{}".format(btn, val))
 
     def run_threaded(self, img_arr=None):
         return self.angle, self.throttle, self.drive_mode, self.recording
