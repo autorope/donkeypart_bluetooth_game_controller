@@ -1,5 +1,7 @@
 # Bluetooth Game Controller
-This is a library to connect a Wii-U (and possibly others) bluetooth game controller to your donkeycar.
+This is a library to connect a [Wii-U](https://www.amazon.com/gp/product/B01GJBUNTG/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=donkeycar-20&linkId=a7fc2ff3e6489b9e6dd267a7f8b2ff19&language=en_US)
+ (and possibly others) bluetooth game controller to your donkeycar.
+
 
 
 ### Install
