@@ -13,6 +13,7 @@ class BluetoothDevice:
         return evdev.InputDevice(path)
 
     def find_input_device(self, search_term):
+
         all_devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
         likely_devices = []
         for device in all_devices:
@@ -25,7 +26,9 @@ class BluetoothDevice:
         elif len(likely_devices) >= 2:
             raise ValueError("found several possible devices. Please specify your input stream.")
         else:
-            raise ValueError("no input event streams found")
+            print('non input devices found, trying again in 3 seconds')
+            time.sleep(3)
+            self.find_input_device(search_term)
         return None
 
 
