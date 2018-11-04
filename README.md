@@ -32,6 +32,9 @@ trust 8C:CD:E8:AB:32:DE
 
 5. Run the part script to see if it works. You should see all the button values printed as you press them. Like this.
 ```bash
+python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py
+
+
 LEFT_STICK_Y 0.00234375
 LEFT_STICK_Y 0.0015625
 LEFT_STICK_Y 0.00078125
@@ -42,3 +45,18 @@ Y 0
 X 1
 X 0
 ```
+
+
+6. Assuming you can see the button outputs, you can now plug this in as your donkeycar controller in 
+the manage.py script...
+```python
+from donkeyblue import BluetoothGameController
+
+# then replace your current controller with...
+ctl = BluetoothGameController()
+
+```
+
+
+7. Check the [code](https://github.com/autorope/donkeypart_bluetooth_game_controller/blob/master/donkeyblue/part.py#L86)
+ for the button mappings. 
