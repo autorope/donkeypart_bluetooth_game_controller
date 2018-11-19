@@ -4,7 +4,7 @@ import unittest
 import evdev
 from evdev import ecodes
 
-from ..donkeypart_bluetooth_controller import BluetoothGameController
+from ..donkeypart_bluetooth_game_controller import BluetoothGameController
 
 from select import select
 from pytest import raises, fixture
