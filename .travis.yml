@@ -1,0 +1,22 @@
+language: python
+
+# This list should match the versions listed in setup.py
+python:
+- 3.5
+- 3.6
+
+os:
+  - linux
+
+before_install:
+- sudo apt-get update -qq
+
+install:
+- pip install -e .
+- pip install -e .[dev]
+
+script:
+- pytest -v --cov=donkeypart_tub/
+
+after_success:
+- codecov

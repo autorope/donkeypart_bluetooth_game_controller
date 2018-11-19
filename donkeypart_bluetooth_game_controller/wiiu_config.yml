@@ -1,0 +1,28 @@
+
+#Map the button codes to the button names
+button_map:
+  305: 'A'
+  304: 'B'
+  307: 'X'
+  308: 'Y'
+  312: 'LEFT_BOTTOM_TRIGGER'
+  310: 'LEFT_TOP_TRIGGER'
+  313: 'RIGHT_BOTTOM_TRIGGER'
+  311: 'RIGHT_TOP_TRIGGER'
+  317: 'LEFT_STICK_PRESS'
+  318: 'RIGHT_STICK_PRESS'
+  314: 'SELECT'
+  315: 'START'
+  0: 'LEFT_STICK_X'
+  1: 'LEFT_STICK_Y'
+  3: 'RIGHT_STICK_X'
+  4: 'RIGHT_STICK_Y'
+  547: 'PAD_RIGHT'
+  546: 'PAD_LEFT'
+  544: 'PAD_UP'
+  548: 'PAD_DOWN'
+
+
+joystic_max_value: 1280
+
+
