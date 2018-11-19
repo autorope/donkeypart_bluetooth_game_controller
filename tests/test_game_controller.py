@@ -1,26 +1,26 @@
 import pytest
 # -*- coding: utf-8 -*-
 import unittest
-from donkeyblue import BluetoothGameController
+import evdev
+from evdev import ecodes
+
+from ..donkeypart_bluetooth_controller import BluetoothGameController
+
+from select import select
+from pytest import raises, fixture
 
 
+class FakeDevice:
+    def read_loop(self):
+        return 'test'
 
-@pytest.fixture()
-def get_input_device():
-    yield 'test'
-
-
-class TestMovingSquareTelemetry(unittest.TestCase):
-
-    @pytest.fixture(autouse=True)
-    def setUp(self, ):
-        self.ctlr = BluetoothGameController(input_path='/test/')
+@pytest.fixture
+def input_device():
+    return FakeDevice()
 
 
-
-
-    def test_update_speed(self):
-        self.ctlr.update_angle(3)
-        assert self.ctlr.angle == 3
-
+def test_device_read_loop(input_device):
+    print('reading loop')
+    ctlr = BluetoothGameController(event_input_device=input_device)
+    ctlr.device.read_loop()
 

@@ -49,7 +49,7 @@ class BluetoothGameController(BluetoothDevice):
     Generator of cordinates of a bouncing moving square for simulations.
     """
 
-    def __init__(self, event_input_path=None, config_path=None, verbose=False):
+    def __init__(self, event_input_device=None, config_path=None, verbose=False):
 
         self.verbose = verbose
         # used to find the event stream input (/dev/input/...)
@@ -71,10 +71,11 @@ class BluetoothGameController(BluetoothDevice):
         self.recording_toggle = cycle([True, False])
         self.recording = next(self.recording_toggle)
 
-        if event_input_path is None:
-            self.load_device(self.search_term)
+        if event_input_device is None:
+            #self.load_device(self.search_term)
+            print(event_input_device)
         else:
-            self.device = self.get_input_device(event_input_path)
+            self.device = event_input_device
 
         if config_path is None:
             config_path = self._get_default_config_path()
