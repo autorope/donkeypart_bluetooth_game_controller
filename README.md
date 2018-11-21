@@ -73,3 +73,4 @@ python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py
 from donkeyblue import BluetoothGameController
 ctl = BluetoothGameController(config=/path/to/your/config/file)
 ```
+4. Make a pull request with your button mappings so other people can use it. 
