@@ -58,7 +58,19 @@ from donkeyblue import BluetoothGameController
 ctl = BluetoothGameController()
 
 ```
+## Add a new type of bluetooth controller.
+If you don't have a different type of controller these same instructions should work but the button mappings will be different. 
 
+1. Use the this same script to show the live output of your controller... 
+```bash
+python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py
+```
 
-7. Check the [code](https://github.com/autorope/donkeypart_bluetooth_game_controller/blob/master/donkeyblue/part.py#L86)
- for the button mappings. 
+2. Copy the [WiiU config](https://github.com/autorope/donkeypart_bluetooth_game_controller/blob/master/donkeyblue/part.py#L86) file and update it with your controllers values. 
+
+3. Now you can use your game controller with these new button mappings like this:
+```python
+from donkeyblue import BluetoothGameController
+ctl = BluetoothGameController(config=/path/to/your/config/file)
+```
+4. Make a pull request with your button mappings so other people can use it. 
