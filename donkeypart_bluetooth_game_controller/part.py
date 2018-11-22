@@ -171,7 +171,6 @@ class BluetoothGameController(BluetoothDevice):
 
 if __name__ == "__main__":
     device_search_term = input("""Please give a string that can identify the bluetooth device (ie. nintendo)""")
-    print(f'device_st {device_search_term}')
     if device_search_term == "":
         device_search_term = None
         print('No search term given. Using default.')
