@@ -1,4 +1,7 @@
 
+device_search_term: 'nintendo'
+
+
 #Map the button codes to the button names
 button_map:
   305: 'A'
@@ -24,5 +27,6 @@ button_map:
 
 
 joystic_max_value: 1280
+
 
 

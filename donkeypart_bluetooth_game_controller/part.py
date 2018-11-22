@@ -21,7 +21,7 @@ class BluetoothDevice:
         all_devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
         likely_devices = []
         for device in all_devices:
-            if self.search_term in device.name.lower():
+            if search_term in device.name.lower():
                 likely_devices.append(device)
 
         if len(likely_devices) == 1:
@@ -49,12 +49,9 @@ class BluetoothGameController(BluetoothDevice):
     Generator of cordinates of a bouncing moving square for simulations.
     """
 
-    def __init__(self, event_input_device=None, config_path=None, verbose=False):
+    def __init__(self, event_input_device=None, config_path=None, device_search_term=None, verbose=False):
 
         self.verbose = verbose
-        # used to find the event stream input (/dev/input/...)
-        self.search_term = "nintendo"
-
         self.running = False
 
         self.state = {}
@@ -71,18 +68,21 @@ class BluetoothGameController(BluetoothDevice):
         self.recording_toggle = cycle([True, False])
         self.recording = next(self.recording_toggle)
 
-        if event_input_device is None:
-            #self.load_device(self.search_term)
-            print(event_input_device)
-        else:
-            self.device = event_input_device
-
         if config_path is None:
             config_path = self._get_default_config_path()
         self.config = self._load_config(config_path)
 
         self.btn_map = self.config.get('button_map')
         self.joystick_max_value = self.config.get('joystick_max_value', 1280)
+
+        # search term used to find the event stream input (/dev/input/...)
+        self.device_search_term = device_search_term or self.config.get('device_search_term', 1280)
+
+        if event_input_device is None:
+            self.load_device(self.device_search_term)
+            print(event_input_device)
+        else:
+            self.device = event_input_device
 
         self.func_map = {
             'LEFT_STICK_X': self.update_angle,
@@ -92,7 +92,6 @@ class BluetoothGameController(BluetoothDevice):
             'PAD_UP': self.increment_throttle_scale,
             'PAD_DOWN': self.decrement_throttle_scale,
         }
-
 
     def _get_default_config_path(self):
         return os.path.join(os.path.dirname(__file__), 'wiiu_config.yml')
@@ -171,5 +170,11 @@ class BluetoothGameController(BluetoothDevice):
 
 
 if __name__ == "__main__":
-    ctl = BluetoothGameController(verbose=True)
+    device_search_term = input("""Please give a string that can identify the bluetooth device (ie. nintendo)""")
+    print(f'device_st {device_search_term}')
+    if device_search_term == "":
+        device_search_term = None
+        print('No search term given. Using default.')
+
+    ctl = BluetoothGameController(verbose=True, device_search_term=device_search_term)
     ctl.update()
