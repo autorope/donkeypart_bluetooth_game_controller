@@ -51,7 +51,7 @@ X 0
 6. Assuming you can see the button outputs, you can now plug this in as your donkeycar controller in
 the manage.py script...
 ```python
-from donkeyblue import BluetoothGameController
+from donkeypart_bluetooth_game_controller import BluetoothGameController
 
 # then replace your current controller with...
 ctl = BluetoothGameController()
@@ -69,7 +69,7 @@ python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py
 
 3. Now you can use your game controller with these new button mappings like this:
 ```python
-from donkeyblue import BluetoothGameController
+from donkeypart_bluetooth_game_controller import BluetoothGameController
 ctl = BluetoothGameController(config=/path/to/your/config/file)
 ```
 4. Make a pull request with your button mappings so other people can use it.
