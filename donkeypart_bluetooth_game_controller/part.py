@@ -80,7 +80,7 @@ class BluetoothGameController(BluetoothDevice):
 
         if event_input_device is None:
             self.load_device(self.device_search_term)
-            print(event_input_device)
+            print(self.device)
         else:
             self.device = event_input_device
 
