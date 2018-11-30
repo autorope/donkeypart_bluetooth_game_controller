@@ -5,7 +5,7 @@ import os
 
 
 setup(name='donkeypart_bluetooth_game_controller',
-      version='0.1',
+      version='0.1.1',
       description='Self driving library for python.',
       long_description='none',
       long_description_content_type="text/markdown",
