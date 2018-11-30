@@ -110,7 +110,7 @@ class BluetoothGameController(BluetoothDevice):
             btn = self.btn_map.get(event.code)
             val = event.value
             if event.type == ecodes.EV_ABS:
-                val = val / self.joystick_max_value
+                val = val / float(self.joystick_max_value)
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
@@ -118,20 +118,28 @@ class BluetoothGameController(BluetoothDevice):
             self.load_device(self.search_term)
             return None, None
 
+
+    def update_state_from_loop(self):
+        btn, val = self.read_loop()
+
+        # update state
+        self.state[btn] = val
+
+        # run_functions
+        func = self.func_map.get(btn)
+        if func is not None:
+            func(val)
+
+        if self.verbose == True:
+            print("button: {}, value:{}".format(btn, val))
+
     def update(self):
         while True:
-            btn, val = self.read_loop()
+            self.update_state_from_loop()
 
-            # update state
-            self.state[btn] = val
-
-            # run_functions
-            func = self.func_map.get(btn)
-            if func is not None:
-                func(val)
-
-            if self.verbose==True:
-                print("button: {}, value:{}".format(btn, val))
+    def run(self):
+        self.update_state_from_loop()
+        return self.angle, self.throttle, self.drive_mode, self.recording
 
     def run_threaded(self, img_arr=None):
         return self.angle, self.throttle, self.drive_mode, self.recording
