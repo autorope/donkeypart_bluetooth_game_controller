@@ -14,11 +14,6 @@ setup(name='donkeypart_bluetooth_game_controller',
       author='Will Roscoe',
       author_email='wroscoe@gmail.com',
       license='MIT',
-      entry_points={
-          'console_scripts': [
-              'donkey=donkeycar.management.base:execute_from_command_line',
-          ],
-      },
       install_requires=['evdev', 'pyyaml'],
       extras_require={'dev': ['pytest-cov']},
       classifiers=[
@@ -33,4 +28,8 @@ setup(name='donkeypart_bluetooth_game_controller',
       keywords='selfdriving cars donkeycar diyrobocars',
 
       packages=find_packages(exclude=(['tests', 'docs', 'site', 'env'])),
+      include_package_data=True,
+      package_data={
+          "": ["*"],
+      },
       )
