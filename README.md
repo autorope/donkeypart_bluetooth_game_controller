@@ -75,3 +75,13 @@ from donkeypart_bluetooth_game_controller import BluetoothGameController
 ctl = BluetoothGameController(config=/path/to/your/config/file)
 ```
 4. Make a pull request with your button mappings so other people can use it.
+
+
+# Tested Controllers
+
+## Works
+* Wii U Pro Controller by Nintendo
+
+
+## Kind of Works (Not Recommended)
+* Wii U Pro Controller by SIBIONO  - This controller seems laggy give the refresh rate from the controller is half of what better controllers give. 
