@@ -3,6 +3,8 @@
 # Bluetooth Game Controller
 This is a library to connect a [Wii-U](https://www.amazon.com/gp/product/B01GJBUNTG/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=donkeycar-20&linkId=a7fc2ff3e6489b9e6dd267a7f8b2ff19&language=en_US)
  (and possibly others) bluetooth game controller to your donkeycar.
+ 
+ >> See the bottom of the page for tested controllers and brands. Beware of knockoffs!
 
 
 
@@ -73,3 +75,13 @@ from donkeypart_bluetooth_game_controller import BluetoothGameController
 ctl = BluetoothGameController(config=/path/to/your/config/file)
 ```
 4. Make a pull request with your button mappings so other people can use it.
+
+
+# Tested Controllers
+
+## Works
+* Wii U Pro Controller by Nintendo
+
+
+## Kind of Works (Not Recommended)
+* Wii U Pro Controller by SIBIONO  - This controller seems laggy give the refresh rate from the controller is half of what better controllers give. 
