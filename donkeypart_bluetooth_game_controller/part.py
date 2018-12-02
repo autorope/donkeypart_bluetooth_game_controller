@@ -2,11 +2,10 @@
 import os
 import time
 from itertools import cycle
-
+import argparse
 import evdev
 from evdev import ecodes
 import yaml
-
 
 class BluetoothDevice:
     device = None
@@ -148,6 +147,40 @@ class BluetoothGameController(BluetoothDevice):
         self.running = False
         time.sleep(0.1)
 
+    def profile(self):
+        msg = """
+        Starting to measure the events per second. Move both joysticks around as fast as you can. 
+        Every 1000 events you'll see how many events are being recieved per second. After 10,000 records
+        you'll see a score for the controller. 
+        """
+        print(msg)
+        event_total = 0
+        start_time = time.time()
+        results = []
+        while True:
+            self.read_loop()
+            event_total += 1
+            if event_total > 1000:
+                end_time = time.time()
+                seconds_elapsed = end_time - start_time
+                events_per_second = event_total / seconds_elapsed
+                results.append(events_per_second)
+                print('events per seconds: {}'.format(events_per_second))
+                start_time = time.time()
+                event_total = 0
+                if len(results) > 9:
+                    break
+
+        sorted_results = sorted(results)
+        best_5_results = sorted_results[5:]
+        max = best_5_results[-1]
+        average = sum(best_5_results) / len(best_5_results)
+
+        print('RESULTS:')
+        print('Events per second. MAX: {}, AVERAGE: {}'.format(max, average))
+
+
+
     def update_angle(self, val):
         self.angle = val
         return
@@ -180,8 +213,17 @@ class BluetoothGameController(BluetoothDevice):
 if __name__ == "__main__":
     device_search_term = input("""Please give a string that can identify the bluetooth device (ie. nintendo)""")
     if device_search_term == "":
-        device_search_term = None
-        print('No search term given. Using default.')
+        print('No search term given. Using Nintendo.')
+        device_search_term = "Nintendo"
 
-    ctl = BluetoothGameController(verbose=True, device_search_term=device_search_term)
-    ctl.update()
+    parser = argparse.ArgumentParser(description='Scripts to help test and setup your controller.')
+    parser.add_argument('command', metavar='command', type=str, help='log or profile')
+
+    args = parser.parse_args()
+    print(args.command)
+    if args.command == 'profile':
+        ctl = BluetoothGameController(device_search_term=device_search_term)
+        ctl.profile()
+    elif args.command == 'log':
+        ctl = BluetoothGameController(verbose=True, device_search_term=device_search_term)
+        ctl.update()

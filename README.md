@@ -64,7 +64,7 @@ If you don't have a different type of controller these same instructions should 
 
 1. Use the this same script to show the live output of your controller...
 ```bash
-python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py
+python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py log
 ```
 
 2. Copy the [WiiU config](https://github.com/autorope/donkeypart_bluetooth_game_controller/blob/master/donkeyblue/part.py#L86) file and update it with your controllers values.
@@ -85,3 +85,12 @@ ctl = BluetoothGameController(config=/path/to/your/config/file)
 
 ## Kind of Works (Not Recommended)
 * Wii U Pro Controller by SIBIONO  - This controller seems laggy give the refresh rate from the controller is half of what better controllers give. 
+
+
+
+## Test a New Controller
+Run the profile script to see the number of events per second you recieve from the controller. Then make a pull request 
+to update this document to help others.
+```
+python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py log
+```
