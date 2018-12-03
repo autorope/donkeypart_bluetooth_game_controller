@@ -50,6 +50,7 @@ class BluetoothGameController(BluetoothDevice):
 
     def __init__(self, event_input_device=None, config_path=None, device_search_term=None, verbose=False):
 
+
         self.verbose = verbose
         self.running = False
 
@@ -114,7 +115,7 @@ class BluetoothGameController(BluetoothDevice):
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
             time.sleep(.1)
-            self.load_device(self.search_term)
+            self.load_device(self.device_search_term)
             return None, None
 
 
